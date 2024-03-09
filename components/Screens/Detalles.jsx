@@ -24,7 +24,7 @@ const CharacterDetailsScreen = ({ route }) => {
         } catch (error) {
           console.error('Error fetching character data:', error);
         } finally {
-          setIsLoading(false); // Incluso si hay un error, establece isLoading a false
+          setIsLoading(false);
         }
       };
   
