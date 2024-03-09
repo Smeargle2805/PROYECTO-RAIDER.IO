@@ -4,6 +4,7 @@ import CharacterDetailsScreen from './Screens/Detalles';
 import GuildDetailsScreen from './Screens/DHermandad';
 import SearchScreen from './Screens/Busqueda';
 import SearchScreenGuild from './Screens/BHermandad';
+import Home from './Screens/Home';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -13,6 +14,10 @@ export const TopTabs = () => {
             let nombreIcono
 
             switch (route.name) {
+                case 'Inicio':
+                    nombreIcono = focused ? "home" : "home"
+                    break;
+
                 case 'Busqueda':
                     nombreIcono = focused ? "search" : "search"
                     break;
@@ -36,6 +41,7 @@ export const TopTabs = () => {
             return <Icon name={nombreIcono} size={20} color={color} />
         }
     })} >
+        <Tab.Screen name="Inicio" component={Home} />
         <Tab.Screen name="Busqueda" component={SearchScreen} />
         <Tab.Screen name="Detalles" component={CharacterDetailsScreen} />
         <Tab.Screen name="Busqueda Guild" component={SearchScreenGuild} />

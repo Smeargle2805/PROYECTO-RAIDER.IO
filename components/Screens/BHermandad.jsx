@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import { styles, pickerSelectStyles } from '../../styles/Busqueda';
+import { Guild } from '../Logo';
 
 const SearchScreenGuild = ({ navigation }) => {
     const [region, setRegion] = useState('');
@@ -15,6 +16,7 @@ const SearchScreenGuild = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.inputContainer}>
+                <Guild/>
                 <RNPickerSelect
                     placeholder={{ label: 'Selecciona una Región', value: null }}
                     onValueChange={(value) => setRegion(value)}

@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'black',
+        backgroundColor: '#420A0A',
     },
     input: {
         borderWidth: 1,
@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
         alignContent: 'center',
         paddingLeft: 80,
         borderRadius: 8,
+        paddingTop: 30
     },
     button: {
         backgroundColor: '#F2B202',

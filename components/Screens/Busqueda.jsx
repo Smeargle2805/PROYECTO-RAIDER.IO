@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import { styles, pickerSelectStyles } from '../../styles/Busqueda';
-import { Logo } from '../Logo';
+import { Personaje } from '../Logo';
 
 const SearchScreen = ({ navigation }) => {
     const [region, setRegion] = useState('');
@@ -11,22 +11,22 @@ const SearchScreen = ({ navigation }) => {
     const [characterName, setCharacterName] = useState('');
 
     const handleSearch = () => {
-        navigation.navigate('Detalles', { region, realm, characterName });
+        navigation.navigate('Detalles Personaje', { region, realm, characterName });
     };
 
     return (
         <View style={styles.container}>
-            <Logo />
+            <Personaje />
             <View style={styles.inputContainer}>
                 <RNPickerSelect
                     placeholder={{ label: 'Selecciona una Región', value: null }}
                     onValueChange={(value) => setRegion(value)}
                     items={[
-                        { label: 'US', value: 'us' },
-                        { label: 'EU', value: 'eu' },
-                        { label: 'TW', value: 'tw' },
-                        { label: 'KR', value: 'kr' },
-                        { label: 'CN', value: 'cn' },
+                        { label: 'America', value: 'us' },
+                        { label: 'Europa', value: 'eu' },
+                        { label: 'Taiwan', value: 'tw' },
+                        { label: 'Corea', value: 'kr' },
+                        { label: 'China', value: 'cn' },
                     ]}
                     style={pickerSelectStyles}
                     value={region}
