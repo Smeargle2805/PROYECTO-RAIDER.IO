@@ -19,7 +19,7 @@ const CharacterDetailsScreen = ({ route }) => {
   useEffect(() => {
     const fetchCharacterData = async () => {
       if (!region || !realm || !characterName) {
-        setIsLoading(false); // No hay información de búsqueda, establece isLoading a false
+        setIsLoading(false);
         return;
       }
 
@@ -99,7 +99,6 @@ const CharacterDetailsScreen = ({ route }) => {
                     <Text style={styles.score}>{seasonData.scores.tank}</Text>
                   </View>
                 </View>
-                {/* Agrega más detalles de scores si es necesario */}
               </View>
             ))}
           </View>

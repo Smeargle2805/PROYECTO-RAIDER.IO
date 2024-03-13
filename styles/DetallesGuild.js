@@ -39,8 +39,9 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 10,
-        marginTop: 20,
-        color: 'white'
+        marginTop: 15,
+        color: 'white',
+        marginLeft: 10
     },
     scoresContainer: {
         marginBottom: 15,
@@ -78,6 +79,7 @@ export const styles = StyleSheet.create({
         color: 'white'
     },
     raidRankings: {
+        marginTop: 4,
         marginBottom: 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -85,6 +87,9 @@ export const styles = StyleSheet.create({
         backgroundColor: '#292929',
         paddingHorizontal: 16,
         paddingVertical: 8,
+        borderRadius: 5,
+        marginLeft: 10,
+        marginRight: 10
     },
     raidInfoContainer: {
         flex: 1,
@@ -93,24 +98,55 @@ export const styles = StyleSheet.create({
     raidTitle: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: 'white'
+        color: 'white',
+        marginLeft: 10
     },
-    raidRanking: {
+    world: {
         fontSize: 14,
         marginBottom: 3,
-        color: 'white'
+        color: '#FFF767',
+        fontWeight: 'bold'
+    },
+    region: {
+        fontSize: 14,
+        marginBottom: 3,
+        color: '#FDA04D',
+        fontWeight: 'bold'
+    },
+    realm: {
+        fontSize: 14,
+        marginBottom: 3,
+        color: '#852DC7',
+        fontWeight: 'bold'
     },
     raidProgression: {
+        marginTop: 4,
         marginBottom: 15,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: '#292929',
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        borderRadius: 5,
+        marginLeft: 10,
+        marginRight: 10
     },
     raidSummary: {
         fontSize: 14,
-        color: 'white'
+        color: 'white',
+        fontWeight: 'bold',
+        marginLeft: 10
     },
     raidBossesKilled: {
         fontSize: 14,
-        color: 'white'
+        color: 'white',
     },
+    raids:{
+        backgroundColor:'#383838',
+        marginBottom: 20,
+        borderRadius: 10
+    }
 });
 
 export const alerta = StyleSheet.create({

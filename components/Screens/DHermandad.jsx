@@ -66,35 +66,42 @@ const GuildDetailsScreen = ({ route }) => {
                         </View>
                     </View>
 
-                    <Text style={styles.sectionHeader}>Raid Rankings</Text>
-                    <FlatList
-                        data={Object.keys(guildData.raid_rankings)}
-                        renderItem={({ item }) => (
-                            <Text style={styles.raidTitle}>{formatRaidTitle(item)}</Text>
-                            <View style={styles.raidRankings}>
-                                <Text style={styles.raidRanking}>Mythic</Text>
-                                <Text style={styles.raidRanking}>World: {guildData.raid_rankings[item].mythic.world}</Text>
-                                <Text style={styles.raidRanking}>Region: {guildData.raid_rankings[item].mythic.region}</Text>
-                                <Text style={styles.raidRanking}>Realm: {guildData.raid_rankings[item].mythic.realm}</Text>
-                            </View>
-                        )}
-                        keyExtractor={(item, index) => index.toString()}
-                    />
+                    <View style={styles.raids}>
+                        <Text style={styles.sectionHeader}>Raid Rankings</Text>
+                        <FlatList
+                            data={Object.keys(guildData.raid_rankings)}
+                            renderItem={({ item }) => (
+                                <View>
+                                    <Text style={styles.raidTitle}>{formatRaidTitle(item)}</Text>
+                                    <View style={styles.raidRankings}>
+                                        <Text style={styles.world}>World: {guildData.raid_rankings[item].mythic.world}</Text>
+                                        <Text style={styles.region}>Region: {guildData.raid_rankings[item].mythic.region}</Text>
+                                        <Text style={styles.realm}>Realm: {guildData.raid_rankings[item].mythic.realm}</Text>
+                                    </View>
+                                </View>
+                            )}
+                            keyExtractor={(item, index) => index.toString()}
+                        />
+                    </View>
 
-                    <Text style={styles.sectionHeader}>Raid Progression</Text>
-                    <FlatList
-                        data={Object.keys(guildData.raid_progression)}
-                        renderItem={({ item }) => (
-                            <View style={styles.raidProgression}>
-                                <Text style={styles.raidTitle}>{formatRaidTitle(item)}</Text>
-                                <Text style={styles.raidSummary}>{guildData.raid_progression[item].summary}</Text>
-                                <Text style={styles.raidBossesKilled}>Normal Bosses Killed: {guildData.raid_progression[item].normal_bosses_killed}</Text>
-                                <Text style={styles.raidBossesKilled}>Heroic Bosses Killed: {guildData.raid_progression[item].heroic_bosses_killed}</Text>
-                                <Text style={styles.raidBossesKilled}>Mythic Bosses Killed: {guildData.raid_progression[item].mythic_bosses_killed}</Text>
-                            </View>
-                        )}
-                        keyExtractor={(item, index) => index.toString()}
-                    />
+                    <View style={styles.raids}>
+                        <Text style={styles.sectionHeader}>Raid Progression</Text>
+                        <FlatList
+                            data={Object.keys(guildData.raid_progression)}
+                            renderItem={({ item }) => (
+                                <View>
+                                    <Text style={styles.raidTitle}>{formatRaidTitle(item)}</Text>
+                                    <Text style={styles.raidSummary}>{guildData.raid_progression[item].summary}</Text>
+                                    <View style={styles.raidProgression}>
+                                        <Text style={styles.raidBossesKilled}>Mythic: {guildData.raid_progression[item].mythic_bosses_killed}</Text>
+                                        <Text style={styles.raidBossesKilled}>Heroic: {guildData.raid_progression[item].heroic_bosses_killed}</Text>
+                                        <Text style={styles.raidBossesKilled}>Normal: {guildData.raid_progression[item].normal_bosses_killed}</Text>
+                                    </View>
+                                </View>
+                            )}
+                            keyExtractor={(item, index) => index.toString()}
+                        />
+                    </View>
                 </>
             )}
         </ScrollView>
