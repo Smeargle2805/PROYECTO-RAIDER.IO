@@ -1,6 +1,6 @@
 // SearchScreen.js
 import React, { useState } from 'react';
-import { View, TextInput, Button } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import { styles, pickerSelectStyles } from '../../styles/Busqueda';
 import { Personaje } from '../Logo';
@@ -18,11 +18,12 @@ const SearchScreen = ({ navigation }) => {
         <View style={styles.container}>
             <Personaje />
             <View style={styles.inputContainer}>
+                <Text style={styles.pickerLabel}>Selecciona una Region</Text>
                 <RNPickerSelect
                     placeholder={{ label: 'Selecciona una Región', value: null }}
                     onValueChange={(value) => setRegion(value)}
                     items={[
-                        { label: 'America', value: 'us' },
+                        { label: 'America y Oceania', value: 'us' },
                         { label: 'Europa', value: 'eu' },
                         { label: 'Taiwan', value: 'tw' },
                         { label: 'Corea', value: 'kr' },
@@ -32,22 +33,26 @@ const SearchScreen = ({ navigation }) => {
                     value={region}
                 />
             </View>
+            <Text style={styles.textLabel}>Ingresa un Reino</Text>
             <TextInput
                 placeholder="Reino"
                 value={realm}
                 onChangeText={text => setRealm(text)}
                 style={styles.input}
             />
+            <Text style={styles.textLabel}>Ingresa un Personaje</Text>
             <TextInput
                 placeholder="Nombre del personaje"
                 value={characterName}
                 onChangeText={text => setCharacterName(text)}
                 style={styles.input}
             />
-            <Button
+            <TouchableOpacity
                 style={styles.button}
-                title="Buscar"
-                onPress={handleSearch} />
+                onPress={handleSearch}
+            >
+                <Text style={styles.buttonText}>Buscar</Text>
+            </TouchableOpacity>
         </View>
     );
 

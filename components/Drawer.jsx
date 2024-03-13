@@ -3,6 +3,7 @@ import SearchScreen from './Screens/Busqueda';
 import SearchScreenGuild from './Screens/BHermandad';
 import CharacterDetailsScreen from './Screens/Detalles';
 import GuildDetailsScreen from './Screens/DHermandad';
+import RaidRankings from './Screens/ListGuilds';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
@@ -17,6 +18,7 @@ export function NavegacionDrawer() {
         <Drawer.Screen name="Detalles Personaje" component={CharacterDetailsScreen} />
         <Drawer.Screen name="Busqueda Guild" component={SearchScreenGuild} />
         <Drawer.Screen name="Detalles Guild" component={GuildDetailsScreen} />
+        <Drawer.Screen name="Top Guilds" component={RaidRankings} />
       </Drawer.Navigator>
     );
   }

@@ -26,10 +26,26 @@ export const styles = StyleSheet.create({
         paddingTop: 30
     },
     button: {
-        backgroundColor: '#F2B202',
-        padding: 10,
-        borderRadius: 5,
-        width: '50%',
+        backgroundColor: '#FF4500',
+        paddingVertical: 15,
+        paddingHorizontal: 30,
+        borderRadius: 10,
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    textLabel: {
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'left',
+        alignSelf: 'flex-start',
+        paddingLeft: 40
+    },
+    pickerLabel: {
+        color: 'white',
+        fontWeight: 'bold'
     },
 });
 
