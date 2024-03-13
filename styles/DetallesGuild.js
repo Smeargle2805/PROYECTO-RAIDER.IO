@@ -3,19 +3,26 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#3E3E3E',
+        backgroundColor: 'black',
         padding: 10,
+    },
+    banner: {
+        flex: 1,
+    },
+    backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover',
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        borderRadius: 10
     },
     profileHeader: {
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 20,
-    },
-    profileImage: {
-        width: 90,
-        height: 90,
-        borderRadius: 40,
-        marginRight: 20,
+        marginLeft: 20,
+        marginTop: 10
     },
     playerName: {
         fontSize: 30,
@@ -72,6 +79,16 @@ export const styles = StyleSheet.create({
     },
     raidRankings: {
         marginBottom: 15,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: '#292929',
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+    },
+    raidInfoContainer: {
+        flex: 1,
+        marginRight: 8,
     },
     raidTitle: {
         fontSize: 16,
