@@ -27,7 +27,7 @@ const RaidRankings = () => {
                             raid,
                             region,
                             difficulty: 'mythic',
-                            limit: 10,
+                            limit: 20,
                             page: 0,
                         },
                     }
@@ -49,7 +49,7 @@ const RaidRankings = () => {
             <View style={alerta.alertContainer}>
                 <View style={styles.pickerContainer}>
                     <View style={styles.pickerWrapper}>
-                        <Text style={styles.pickerLabel}>Selecciona una Raid</Text>
+                        <Text style={styles.pickerLabel}>Selecciona una Banda</Text>
                         <RNPickerSelect
                             placeholder={{ label: 'Selecciona una Raid', value: null }}
                             onValueChange={(value) => setRaid(value)}
@@ -123,30 +123,35 @@ const RaidRankings = () => {
     }
 
     const handleGuildPress = (guild) => {
-        navigation.navigate('Detalles Guild', {
+        navigation.navigate('Detalles Hermandad', {
             name: guild.name,
             region: guild.region.short_name,
             realm: guild.realm.name,
         });
     };
 
-    const renderItem = ({ item }) => (
-        <TouchableOpacity style={styles.guildContainer} onPress={() => handleGuildPress(item)}>
-            <Image style={styles.logo} source={{ uri: item.logo }} />
+    const renderItem = ({ item }) => {
+        // Verificar si la guild tiene un logo definido
+        const logoSource = item.logo ? { uri: item.logo } : { uri: 'https://seeklogo.com/images/W/world-of-warcraft-logo-F6AAB54AD8-seeklogo.com.png' };
+      
+        return (
+          <TouchableOpacity style={styles.guildContainer} onPress={() => handleGuildPress(item)}>
+            <Image style={styles.logo} source={logoSource} />
             <View style={styles.guildInfo}>
-                <Text style={styles.guildName}>{item.name}</Text>
-                <Text style={styles.guildInfo}>{`Facción: ${item.faction}`}</Text>
-                <Text style={styles.guildInfo}>{`Region: ${item.region.short_name}`}</Text>
-                <Text style={styles.guildInfo}>{`Servidor: ${item.realm.name}`}</Text>
+              <Text style={styles.guildName}>{item.name}</Text>
+              <Text style={styles.guildInfo}>{`Facción: ${item.faction}`}</Text>
+              <Text style={styles.guildInfo}>{`Region: ${item.region.short_name}`}</Text>
+              <Text style={styles.guildInfo}>{`Servidor: ${item.realm.name}`}</Text>
             </View>
-        </TouchableOpacity>
-    );
+          </TouchableOpacity>
+        );
+      };
 
     return (
         <View style={styles.container}>
             <View style={styles.pickerContainer}>
                 <View style={styles.pickerWrapper}>
-                    <Text style={styles.pickerLabel}>Selecciona una Raid</Text>
+                    <Text style={styles.pickerLabel}>Selecciona una Banda</Text>
                     <RNPickerSelect
                         placeholder={{ label: 'Selecciona una Raid', value: null }}
                         onValueChange={(value) => setRaid(value)}

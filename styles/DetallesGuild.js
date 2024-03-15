@@ -173,6 +173,6 @@ export const alerta = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         fontWeight: 'bold',
-        color: 'white',
+        color: '#FFCA38',
     },
 });

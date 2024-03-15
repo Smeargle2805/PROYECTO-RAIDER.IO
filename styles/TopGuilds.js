@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
         marginRight: 10,
     },
     pickerLabel:{
-        color:'white',
+        color:'#FFCA38',
         fontWeight: 'bold'
     },
     guildContainer: {
@@ -30,10 +30,10 @@ export const styles = StyleSheet.create({
         borderRadius: 5,
     },
     logo: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
-        marginRight: 10,
+        width: 60,
+        height: 60,
+        marginRight: 20,
+        marginLeft: 5
     },
     guildInfo: {
         flex: 1,
@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
     guildName: {
         fontWeight: 'bold',
         marginBottom: 5,
-        color:'white',
+        color:'#FFCA38',
         fontSize: 20
     },
 });

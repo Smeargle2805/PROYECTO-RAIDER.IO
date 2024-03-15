@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#420A0A',
+        backgroundColor: '#000000',
     },
     input: {
         borderWidth: 1,
@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
         paddingTop: 30
     },
     button: {
-        backgroundColor: '#FF4500',
+        backgroundColor: '#FC8F31',
         paddingVertical: 15,
         paddingHorizontal: 30,
         borderRadius: 10,
@@ -37,14 +37,14 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     textLabel: {
-        color: 'white',
+        color: '#FFCA38',
         fontWeight: 'bold',
         textAlign: 'left',
         alignSelf: 'flex-start',
         paddingLeft: 40
     },
     pickerLabel: {
-        color: 'white',
+        color: '#FFCA38',
         fontWeight: 'bold'
     },
 });
@@ -54,7 +54,7 @@ export const pickerSelectStyles = StyleSheet.create({
         fontSize: 16,
         borderWidth: 0.5,
         borderColor: 'purple',
-        borderRadius: 8,
+        borderRadius: 10,
         color: 'black',
         width: '80%',
         marginBottom: 20,

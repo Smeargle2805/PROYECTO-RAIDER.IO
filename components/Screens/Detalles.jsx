@@ -44,6 +44,10 @@ const CharacterDetailsScreen = ({ route }) => {
       </View>
     );
   }
+  const factionBanner = characterData.faction === 'horde'
+    ? { uri: 'https://getwallpapers.com/wallpaper/full/0/6/3/261410.jpg' }
+    : { uri: 'https://external-preview.redd.it/xPq0WfS5oWRLkw5tjNlk2M-i3-DU_VF85uuaBvLWeU8.jpg?auto=webp&s=d8e88e13ba9517b054b1ffb94bfdf18b7b550c79' };
+
 
   return (
     <ScrollView style={styles.container}>
@@ -51,7 +55,7 @@ const CharacterDetailsScreen = ({ route }) => {
         <>
           <View style={styles.banner}>
             <Image
-              source={{ uri: 'https://images8.alphacoders.com/124/1240726.jpg'}}
+              source={factionBanner}
               style={styles.backgroundImage}
             />
 
@@ -61,6 +65,7 @@ const CharacterDetailsScreen = ({ route }) => {
                 <Text style={styles.playerName}>{characterData.name}</Text>
                 <Text style={styles.playerDetails}>{characterData.active_spec_name} {characterData.class}</Text>
                 <Text style={styles.playerDetails}>{characterData.race} - {characterData.gender}</Text>
+                <Text style={styles.playerDetails}>{characterData.faction}</Text>
               </View>
             </View>
           </View>
@@ -103,25 +108,27 @@ const CharacterDetailsScreen = ({ route }) => {
             ))}
           </View>
 
-          <Text style={styles.sectionHeader}>Gear</Text>
+          <Text style={styles.sectionHeader}>Equipamiento</Text>
           <View style={styles.gearContainer}>
             {gearData && Object.keys(gearData.items).map((slot, index) => (
               <View key={index} style={styles.gearItem}>
                 <Image source={{ uri: `https://render.worldofwarcraft.com/icons/56/${gearData.items[slot].icon}.jpg` }} style={styles.gearIcon} />
                 <View style={styles.gearInfo}>
                   <Text style={styles.gearName}>{gearData.items[slot].name}</Text>
-                  <Text style={styles.gearLevel}>Item Level: {gearData.items[slot].item_level}</Text>
+                  <Text style={styles.gearLevel}>Nivel Objeto: {gearData.items[slot].item_level}</Text>
                 </View>
               </View>
             ))}
           </View>
 
           <Text style={styles.sectionHeader}>Raid Progression</Text>
-          <View style={styles.raidProgression}>
+          <View style={styles.gearContainer}>
             {characterData.raid_progression && Object.keys(characterData.raid_progression).map((raid, index) => (
               <View key={index} style={styles.raidContainer}>
                 <Text style={styles.raidTitle}>{formatRaidTitle(raid)}</Text>
+                <View style={styles.raidProgression}>
                 <Text style={styles.raidSummary}>{characterData.raid_progression[raid].summary}</Text>
+                </View>
               </View>
             ))}
           </View>

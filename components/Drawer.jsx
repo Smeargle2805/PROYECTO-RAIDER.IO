@@ -16,9 +16,9 @@ export function NavegacionDrawer() {
         <Drawer.Screen name="Inicio" component={Home} />
         <Drawer.Screen name="Busqueda Personaje" component={SearchScreen} />
         <Drawer.Screen name="Detalles Personaje" component={CharacterDetailsScreen} />
-        <Drawer.Screen name="Busqueda Guild" component={SearchScreenGuild} />
-        <Drawer.Screen name="Detalles Guild" component={GuildDetailsScreen} />
-        <Drawer.Screen name="Top Guilds" component={RaidRankings} />
+        <Drawer.Screen name="Busqueda Hermandad" component={SearchScreenGuild} />
+        <Drawer.Screen name="Detalles Hermandad" component={GuildDetailsScreen} />
+        <Drawer.Screen name="Top Hermandades" component={RaidRankings} />
       </Drawer.Navigator>
     );
   }

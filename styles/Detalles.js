@@ -48,20 +48,24 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 10,
-        marginTop: 20,
-        color: 'white'
+        marginTop: 15,
+        color: '#FFCA38',
+        marginLeft: 10
     },
     scoreContainer: {
         marginBottom: 15,
         backgroundColor: '#292929',
         borderRadius: 5,
-        paddingTop: 5
+        paddingTop: 5,
+        marginLeft: 10,
+        marginRight: 10
     },
     scoreLabel: {
         fontSize: 16,
         fontWeight: 'bold',
         color: 'white',
-        paddingBottom: 10
+        paddingBottom: 10,
+        marginLeft: 10,
     },
     scoreRow: {
         flexDirection: 'row',
@@ -79,18 +83,34 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold'
     },
+    gearContainer: {
+        marginTop: 4,
+        marginBottom: 15,
+        flexDirection: 'colum',
+        alignItems: 'right',
+        backgroundColor: '#292929',
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        borderRadius: 5,
+        marginLeft: 10,
+        marginRight: 10
+    },
     gearItem: {
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 10,
+        backgroundColor: 'black',
+        padding: 10,
+        borderRadius: 10
     },
     gearIcon: {
         width: 40,
         height: 40,
         marginRight: 10,
+        borderRadius: 7
     },
     gearName: {
-        fontSize: 16,
+        fontSize: 15,
         fontWeight: 'bold',
         color: 'white'
     },
@@ -110,6 +130,19 @@ export const styles = StyleSheet.create({
         fontSize: 14,
         color: 'white'
     },
+    raidProgression: {
+        marginTop: 4,
+        marginBottom: 15,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: 'black',
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        borderRadius: 5,
+        marginLeft: 10,
+        marginRight: 10
+    },
 });
 
 export const alerta = StyleSheet.create({
@@ -124,6 +157,6 @@ export const alerta = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         fontWeight: 'bold',
-        color: 'white',
+        color: '#FFCA38',
     },
 });
