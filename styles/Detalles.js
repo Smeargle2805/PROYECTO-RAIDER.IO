@@ -117,7 +117,7 @@ export const alerta = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#3E3E3E',
+        backgroundColor: '#000000',
         padding: 20,
     },
     alertText: {

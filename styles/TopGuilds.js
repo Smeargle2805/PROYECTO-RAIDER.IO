@@ -46,3 +46,17 @@ export const styles = StyleSheet.create({
         fontSize: 20
     },
 });
+
+export const alerta = StyleSheet.create({
+    alertContainer: {
+        flex: 1,
+        padding: 10,
+        backgroundColor: '#000000',
+    },
+    alertText: {
+        fontSize: 18,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        color: 'white',
+    },
+});
