@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 10,
         marginTop: 15,
-        color: 'white',
+        color: '#FFCA38',
         marginLeft: 10
     },
     scoresContainer: {
@@ -146,7 +146,19 @@ export const styles = StyleSheet.create({
         backgroundColor:'#383838',
         marginBottom: 20,
         borderRadius: 10
-    }
+    },
+    members: {
+        marginTop: 4,
+        marginBottom: 15,
+        flexDirection: 'colum',
+        alignItems: 'right',
+        backgroundColor: '#292929',
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        borderRadius: 5,
+        marginLeft: 10,
+        marginRight: 10
+    },
 });
 
 export const alerta = StyleSheet.create({

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, Image, FlatList } from 'react-native';
+import { View, Text, ScrollView, Image, FlatList, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { styles, alerta } from '../../styles/DetallesGuild';
+import { useNavigation } from '@react-navigation/native';
 
 const formatRaidTitle = (raid) => {
     const words = raid.split('-');
@@ -12,7 +13,7 @@ const formatRaidTitle = (raid) => {
 const GuildDetailsScreen = ({ route }) => {
     const [guildData, setGuildData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-
+    const navigation = useNavigation();
     const { region, realm, name } = route.params || {};
 
     useEffect(() => {
@@ -26,7 +27,7 @@ const GuildDetailsScreen = ({ route }) => {
                 const response = await axios.get(`https://raider.io/api/v1/guilds/profile?region=${region}&realm=${realm}&name=${name}&fields=raid_progression%2Craid_rankings%2Cmembers`);
                 setGuildData(response.data);
             } catch (error) {
-                console.error('Error fetching character data:', error);
+                console.error('Error fetching guild data:', error);
             } finally {
                 setIsLoading(false);
             }
@@ -34,6 +35,12 @@ const GuildDetailsScreen = ({ route }) => {
 
         fetchGuildData();
     }, [region, realm, name]);
+
+    const fetchRank1And2Characters = () => {
+        if (!guildData || !guildData.members) return [];
+
+        return guildData.members.filter(member => member.rank === 1 || member.rank === 2);
+    };
 
     if (!region || !realm || !name || isLoading) {
         return (
@@ -43,9 +50,20 @@ const GuildDetailsScreen = ({ route }) => {
         );
     }
 
+    const handleCharacterPress = (character) => {
+        navigation.navigate('Detalles Personaje', {
+            characterName: character.character.name,
+            region: character.character.region,
+            realm: character.character.realm,
+        });
+    };
+
+    const rank1And2Characters = fetchRank1And2Characters();
+
     const factionBanner = guildData.faction === 'horde'
         ? { uri: 'https://getwallpapers.com/wallpaper/full/0/6/3/261410.jpg' }
         : { uri: 'https://external-preview.redd.it/xPq0WfS5oWRLkw5tjNlk2M-i3-DU_VF85uuaBvLWeU8.jpg?auto=webp&s=d8e88e13ba9517b054b1ffb94bfdf18b7b550c79' };
+
 
     return (
         <ScrollView style={styles.container}>
@@ -100,6 +118,27 @@ const GuildDetailsScreen = ({ route }) => {
                                 </View>
                             )}
                             keyExtractor={(item, index) => index.toString()}
+                        />
+                    </View>
+                    <View style={styles.raids}>
+                        <Text style={styles.sectionHeader}>Guild Masters & Oficiales</Text>
+                        <FlatList
+                            data={rank1And2Characters}
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={({ item }) => (
+                                <TouchableOpacity onPress={() => handleCharacterPress(item)}>
+                                    <View style={{ marginVertical: 5 }}>
+                                        <Text style={styles.raidTitle}>{item.character.name}</Text>
+                                        <View style={styles.members}>
+                                            <Text style={styles.raidBossesKilled}>Rango: {item.rank}</Text>
+                                            <Text style={styles.raidBossesKilled}>Clase: {item.character.class}</Text>
+                                            <Text style={styles.raidBossesKilled}>Especialización: {item.character.active_spec_name}</Text>
+                                            <Text style={styles.raidBossesKilled}>Region: {item.character.region}</Text>
+                                            <Text style={styles.raidBossesKilled}>Reino: {item.character.realm}</Text>
+                                        </View>
+                                    </View>
+                                </TouchableOpacity>
+                            )}
                         />
                     </View>
                 </>
