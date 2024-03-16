@@ -4,6 +4,7 @@ import SearchScreenGuild from './Screens/BHermandad';
 import CharacterDetailsScreen from './Screens/Detalles';
 import GuildDetailsScreen from './Screens/DHermandad';
 import RaidRankings from './Screens/ListGuilds';
+import SeasonCutoffs from './Screens/CutOffs';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
@@ -19,6 +20,7 @@ export function NavegacionDrawer() {
         <Drawer.Screen name="Busqueda Hermandad" component={SearchScreenGuild} />
         <Drawer.Screen name="Detalles Hermandad" component={GuildDetailsScreen} />
         <Drawer.Screen name="Top Hermandades" component={RaidRankings} />
+        <Drawer.Screen name="CutOffs Temporada" component={SeasonCutoffs} />
       </Drawer.Navigator>
     );
   }

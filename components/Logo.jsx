@@ -15,7 +15,7 @@ export const Personaje = () => {
     <View style={logoPersonaje.container}>
         <Image
           style={logoPersonaje.image}
-          source={{ uri: "https://www.gamewallpapers.com/wallpapers_slechte_compressie/wallpaper_world_of_warcraft_shadowlands_01_1920x1080.jpg" }}
+          source={{ uri: "https://pixelz.cc/wp-content/uploads/2018/12/world-of-warcraft-garrosh-hellscream-uhd-4k-wallpaper.jpg" }}
         />
     </View>
   );
@@ -25,7 +25,7 @@ export const Guild = () => {
   return <View style={{ marginBottom:50, }}>
     <Image
       style={LogoGuild.image}
-      source={{ uri: "https://media.guildsofwow.com/library-images/859453/1080/battle-for-azeroth-horde-team.jpg" }}
+      source={{ uri: "https://images6.alphacoders.com/900/900476.jpg" }}
     />
   </View>
 }

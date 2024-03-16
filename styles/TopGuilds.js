@@ -17,8 +17,8 @@ export const styles = StyleSheet.create({
         flex: 1,
         marginRight: 10,
     },
-    pickerLabel:{
-        color:'#FFCA38',
+    pickerLabel: {
+        color: '#FFCA38',
         fontWeight: 'bold'
     },
     guildContainer: {
@@ -37,12 +37,12 @@ export const styles = StyleSheet.create({
     },
     guildInfo: {
         flex: 1,
-        color:'white'
+        color: 'white'
     },
     guildName: {
         fontWeight: 'bold',
         marginBottom: 5,
-        color:'#FFCA38',
+        color: '#FFCA38',
         fontSize: 20
     },
 });
@@ -57,6 +57,7 @@ export const alerta = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         fontWeight: 'bold',
-        color: 'white',
+        color: '#FFCA38',
+        marginTop: 50
     },
 });

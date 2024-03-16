@@ -35,6 +35,23 @@ export const styles = StyleSheet.create({
         marginBottom: 3,
         color: 'white'
     },
+    profileButton: {
+        position: 'absolute',
+        bottom: 10,
+        right: 20,
+        backgroundColor: 'transparent',
+        borderRadius: 50,
+        width: 60,
+        height: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation: 5,
+    },
+    profileIcon: {
+        width: 40,
+        height: 40,
+        resizeMode: 'contain',
+    },
     sectionHeader: {
         fontSize: 18,
         fontWeight: 'bold',
@@ -42,41 +59,6 @@ export const styles = StyleSheet.create({
         marginTop: 15,
         color: '#FFCA38',
         marginLeft: 10
-    },
-    scoresContainer: {
-        marginBottom: 15,
-    },
-    scoreLabel: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: 'white'
-    },
-    score: {
-        fontSize: 14,
-        marginBottom: 3,
-        color: 'white'
-    },
-    gearContainer: {
-        marginBottom: 15,
-    },
-    gearItem: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 10,
-    },
-    gearIcon: {
-        width: 40,
-        height: 40,
-        marginRight: 10,
-    },
-    gearName: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: 'white'
-    },
-    gearLevel: {
-        fontSize: 14,
-        color: 'white'
     },
     raidRankings: {
         marginTop: 4,
@@ -134,7 +116,7 @@ export const styles = StyleSheet.create({
     },
     raidSummary: {
         fontSize: 14,
-        color: 'white',
+        color: '#FDA04D',
         fontWeight: 'bold',
         marginLeft: 10
     },
@@ -142,22 +124,43 @@ export const styles = StyleSheet.create({
         fontSize: 14,
         color: 'white',
     },
-    raids:{
-        backgroundColor:'#383838',
+    raids: {
+        backgroundColor: '#383838',
         marginBottom: 20,
-        borderRadius: 10
+        borderRadius: 10,
+        marginLeft: 10,
+        marginRight: 10,
+    },
+    memberName: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#FDA04D',
     },
     members: {
         marginTop: 4,
-        marginBottom: 15,
+        marginBottom: 10,
         flexDirection: 'colum',
         alignItems: 'right',
-        backgroundColor: '#292929',
         paddingHorizontal: 16,
         paddingVertical: 8,
         borderRadius: 5,
+        marginRight: 10
+    },
+    guildContainer: {
+        flexDirection: 'row',
+        alignItems: 'right',
+        marginBottom: 10,
+        backgroundColor: '#393838',
+        borderRadius: 5,
         marginLeft: 10,
         marginRight: 10
+    },
+    logo: {
+        width: 80,
+        height: 80,
+        marginRight: 15,
+        marginLeft: 20,
+        marginTop: 23
     },
 });
 

@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { ProgressBarAndroidComponent, StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     container: {
@@ -44,6 +44,23 @@ export const styles = StyleSheet.create({
         marginBottom: 3,
         color: 'white'
     },
+    profileButton: {
+        position: 'absolute',
+        bottom: 10,
+        right: 20,
+        backgroundColor: 'transparent',
+        borderRadius: 50,
+        width: 60,
+        height: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation: 5,
+    },
+    profileIcon: {
+        width: 40,
+        height: 40,
+        resizeMode: 'contain',
+    },
     sectionHeader: {
         fontSize: 18,
         fontWeight: 'bold',
@@ -52,14 +69,6 @@ export const styles = StyleSheet.create({
         color: '#FFCA38',
         marginLeft: 10
     },
-    scoreContainer: {
-        marginBottom: 15,
-        backgroundColor: '#292929',
-        borderRadius: 5,
-        paddingTop: 5,
-        marginLeft: 10,
-        marginRight: 10
-    },
     scoreLabel: {
         fontSize: 16,
         fontWeight: 'bold',
@@ -67,14 +76,37 @@ export const styles = StyleSheet.create({
         paddingBottom: 10,
         marginLeft: 10,
     },
+    scoreOverall: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#FC8F31',
+        paddingBottom: 10,
+        marginLeft: 10,
+    },
+    scoreContainer: {
+        paddingHorizontal: 20,
+        marginBottom: 20,
+        marginTop: 5,
+        backgroundColor: 'black',
+        borderWidth: 4,
+        borderColor: '#515151',
+        borderRadius: 10,
+        marginLeft: 10,
+        marginRight: 10,
+    },
     scoreRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: 5,
-        paddingTop: 2,
-        backgroundColor: '#292929',
-        paddingLeft: 10,
-        paddingRight: 10,
+        marginTop: 10,
+        marginBottom: 10,
+    },
+    scoreItem: {
+        alignItems: 'center',
+        marginRight: 20,
+    },
+    scoreImage: {
+        width: 55,
+        height: 55,
     },
     score: {
         fontSize: 14,
@@ -88,47 +120,56 @@ export const styles = StyleSheet.create({
         marginBottom: 15,
         flexDirection: 'colum',
         alignItems: 'right',
-        backgroundColor: '#292929',
+        backgroundColor: '#383838',
         paddingHorizontal: 16,
-        paddingVertical: 8,
+        paddingVertical: 13,
         borderRadius: 5,
         marginLeft: 10,
-        marginRight: 10
+        marginRight: 10,
     },
     gearItem: {
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 10,
-        backgroundColor: 'black',
+        backgroundColor: '#292929',
         padding: 10,
         borderRadius: 10
     },
     gearIcon: {
-        width: 40,
-        height: 40,
+        width: 50,
+        height: 50,
         marginRight: 10,
-        borderRadius: 7
+        borderRadius: 5
     },
     gearName: {
         fontSize: 15,
         fontWeight: 'bold',
-        color: 'white'
+        color: 'white',
+        maxWidth: '95%',
     },
     gearLevel: {
         fontSize: 14,
-        color: 'white'
+        color: '#852DC7',
+        fontWeight: 'bold'
     },
     raidContainer: {
-        marginBottom: 15,
+        marginBottom: 3,
+        marginTop: 5,
     },
     raidTitle: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: 'white'
+        color: 'white',
     },
     raidSummary: {
         fontSize: 14,
-        color: 'white'
+        color: 'white',
+        fontWeight: 'bold'
+    },
+    raidTotal: {
+        fontSize: 14,
+        color: '#FC8F31',
+        fontWeight: 'bold'
     },
     raidProgression: {
         marginTop: 4,
@@ -136,12 +177,10 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: 'black',
+        backgroundColor: '#292929',
         paddingHorizontal: 16,
         paddingVertical: 8,
         borderRadius: 5,
-        marginLeft: 10,
-        marginRight: 10
     },
 });
 

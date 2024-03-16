@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, Image, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, Image, FlatList, TouchableOpacity, Linking } from 'react-native';
 import axios from 'axios';
 import { styles, alerta } from '../../styles/DetallesGuild';
 import { useNavigation } from '@react-navigation/native';
@@ -64,6 +64,37 @@ const GuildDetailsScreen = ({ route }) => {
         ? { uri: 'https://getwallpapers.com/wallpaper/full/0/6/3/261410.jpg' }
         : { uri: 'https://external-preview.redd.it/xPq0WfS5oWRLkw5tjNlk2M-i3-DU_VF85uuaBvLWeU8.jpg?auto=webp&s=d8e88e13ba9517b054b1ffb94bfdf18b7b550c79' };
 
+    const navigateToProfile = () => {
+        if (guildData.profile_url) {
+            Linking.openURL(guildData.profile_url);
+        }
+    };
+
+    function obtenerTituloPorRango(rank) {
+        if (rank === 1) {
+            return "Guild Master";
+        } else if (rank === 2) {
+            return "Oficial";
+        } else {
+            return "Rango desconocido";
+        }
+    }
+
+    const renderItem = ({ item }) => {
+
+        return (
+            <TouchableOpacity style={styles.guildContainer} onPress={() => handleCharacterPress(item)}>
+                <Image style={styles.logo} source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987424.png' }} />
+                <View style={styles.members}>
+                    <Text style={styles.memberName}>{item.character.name}</Text>
+                    <Text style={styles.raidBossesKilled}>{item.character.class} - {item.character.active_spec_name}</Text>
+                    <Text style={styles.raidBossesKilled}>Rango: {obtenerTituloPorRango(item.rank)}</Text>
+                    <Text style={styles.raidBossesKilled}>Region: {item.character.region}</Text>
+                    <Text style={styles.raidBossesKilled}>Reino: {item.character.realm}</Text>
+                </View>
+            </TouchableOpacity>
+        );
+    };
 
     return (
         <ScrollView style={styles.container}>
@@ -82,65 +113,61 @@ const GuildDetailsScreen = ({ route }) => {
                                 <Text style={styles.playerDetails}>Reino: {guildData.realm}</Text>
                             </View>
                         </View>
+
+                        <TouchableOpacity style={styles.profileButton} onPress={() => navigateToProfile()}>
+                            <Image source={{ uri: 'https://yt3.googleusercontent.com/ytc/AIdro_lkBlXGH-KKNxkcI8CzUmOKGf9Tty-1z4uvUmlE=s900-c-k-c0x00ffffff-no-rj' }} style={styles.profileIcon} />
+                        </TouchableOpacity>
                     </View>
 
                     <View style={styles.raids}>
                         <Text style={styles.sectionHeader}>Raid Rankings</Text>
-                        <FlatList
-                            data={Object.keys(guildData.raid_rankings)}
-                            renderItem={({ item }) => (
-                                <View>
-                                    <Text style={styles.raidTitle}>{formatRaidTitle(item)}</Text>
-                                    <View style={styles.raidRankings}>
-                                        <Text style={styles.world}>World: {guildData.raid_rankings[item].mythic.world}</Text>
-                                        <Text style={styles.region}>Region: {guildData.raid_rankings[item].mythic.region}</Text>
-                                        <Text style={styles.realm}>Realm: {guildData.raid_rankings[item].mythic.realm}</Text>
-                                    </View>
+                        {Object.keys(guildData.raid_rankings).map((item, index) => (
+                            <View key={index}>
+                                <Text style={styles.raidTitle}>{formatRaidTitle(item)}</Text>
+                                <View style={styles.raidRankings}>
+                                    <Text style={styles.world}>World: {guildData.raid_rankings[item].mythic.world}</Text>
+                                    <Text style={styles.region}>Region: {guildData.raid_rankings[item].mythic.region}</Text>
+                                    <Text style={styles.realm}>Realm: {guildData.raid_rankings[item].mythic.realm}</Text>
                                 </View>
-                            )}
-                            keyExtractor={(item, index) => index.toString()}
-                        />
+                            </View>
+                        ))}
                     </View>
 
                     <View style={styles.raids}>
                         <Text style={styles.sectionHeader}>Raid Progression</Text>
-                        <FlatList
-                            data={Object.keys(guildData.raid_progression)}
-                            renderItem={({ item }) => (
-                                <View>
-                                    <Text style={styles.raidTitle}>{formatRaidTitle(item)}</Text>
-                                    <Text style={styles.raidSummary}>{guildData.raid_progression[item].summary}</Text>
-                                    <View style={styles.raidProgression}>
-                                        <Text style={styles.raidBossesKilled}>Mythic: {guildData.raid_progression[item].mythic_bosses_killed}</Text>
-                                        <Text style={styles.raidBossesKilled}>Heroic: {guildData.raid_progression[item].heroic_bosses_killed}</Text>
-                                        <Text style={styles.raidBossesKilled}>Normal: {guildData.raid_progression[item].normal_bosses_killed}</Text>
-                                    </View>
+                        {Object.keys(guildData.raid_progression).map((item, index) => (
+                            <View key={index}>
+                                <Text style={styles.raidTitle}>{formatRaidTitle(item)}</Text>
+                                <Text style={styles.raidSummary}>{guildData.raid_progression[item].summary}</Text>
+                                <View style={styles.raidProgression}>
+                                    <Text style={styles.raidBossesKilled}>Mythic: {guildData.raid_progression[item].mythic_bosses_killed}</Text>
+                                    <Text style={styles.raidBossesKilled}>Heroic: {guildData.raid_progression[item].heroic_bosses_killed}</Text>
+                                    <Text style={styles.raidBossesKilled}>Normal: {guildData.raid_progression[item].normal_bosses_killed}</Text>
                                 </View>
-                            )}
-                            keyExtractor={(item, index) => index.toString()}
-                        />
+                            </View>
+                        ))}
                     </View>
-                    <View style={styles.raids}>
-                        <Text style={styles.sectionHeader}>Guild Masters & Oficiales</Text>
-                        <FlatList
-                            data={rank1And2Characters}
-                            keyExtractor={(item, index) => index.toString()}
-                            renderItem={({ item }) => (
-                                <TouchableOpacity onPress={() => handleCharacterPress(item)}>
-                                    <View style={{ marginVertical: 5 }}>
-                                        <Text style={styles.raidTitle}>{item.character.name}</Text>
-                                        <View style={styles.members}>
-                                            <Text style={styles.raidBossesKilled}>Rango: {item.rank}</Text>
-                                            <Text style={styles.raidBossesKilled}>Clase: {item.character.class}</Text>
-                                            <Text style={styles.raidBossesKilled}>Especialización: {item.character.active_spec_name}</Text>
-                                            <Text style={styles.raidBossesKilled}>Region: {item.character.region}</Text>
-                                            <Text style={styles.raidBossesKilled}>Reino: {item.character.realm}</Text>
-                                        </View>
-                                    </View>
-                                </TouchableOpacity>
-                            )}
-                        />
-                    </View>
+
+                    <Text style={styles.sectionHeader}>Guild Masters & Oficiales</Text>
+                    {rank1And2Characters.map((item, index) => (
+                        <TouchableOpacity
+                            key={index}
+                            style={styles.guildContainer}
+                            onPress={() => handleCharacterPress(item)}
+                        >
+                            <Image
+                                style={styles.logo}
+                                source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987424.png' }}
+                            />
+                            <View style={styles.members}>
+                                <Text style={styles.memberName}>{item.character.name}</Text>
+                                <Text style={styles.raidBossesKilled}>{item.character.class} - {item.character.active_spec_name}</Text>
+                                <Text style={styles.raidBossesKilled}>Rango: {obtenerTituloPorRango(item.rank)}</Text>
+                                <Text style={styles.raidBossesKilled}>Region: {item.character.region}</Text>
+                                <Text style={styles.raidBossesKilled}>Reino: {item.character.realm}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    ))}
                 </>
             )}
         </ScrollView>

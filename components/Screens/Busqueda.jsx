@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import { styles, pickerSelectStyles } from '../../styles/Busqueda';
@@ -9,7 +9,6 @@ const SearchScreen = ({ navigation }) => {
   const [region, setRegion] = useState('');
   const [realm, setRealm] = useState('');
   const [characterName, setCharacterName] = useState('');
-  const [locationLoaded, setLocationLoaded] = useState(false);
 
 
   const handleSearch = () => {
@@ -22,11 +21,10 @@ const SearchScreen = ({ navigation }) => {
     const { latitude, longitude } = coords;
     const newRegion = getRegion(latitude, longitude);
     setRegion(newRegion);
-    setLocationLoaded(true);
   };
 
   const getRegion = (latitude, longitude) => {
-    if (latitude > 0) {
+    if (latitude >= -56.0 && latitude <= 71.357 && longitude >= -180.0 && longitude <= -25.0) {
       return 'us';
     } else if (latitude >= 21.807 && latitude <= 25.621 && longitude >= 118.211 && longitude <= 122.036) {
       return 'tw';
@@ -41,53 +39,42 @@ const SearchScreen = ({ navigation }) => {
     }
   };
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setLocationLoaded(true);
-    }, 5000);
-    return () => clearTimeout(timeout);
-  }, []);
-
   return (
     <View style={styles.container}>
       <Personaje />
-        <View style={styles.inputContainer}>
-          <Text style={styles.pickerLabel}>Selecciona una Región</Text>
-          <LocationComponent onLocationChange={handleLocationChange} />
-          {locationLoaded ? (
-            <RNPickerSelect
-              placeholder={{ label: 'Selecciona una Región', value: null }}
-              onValueChange={(value) => setRegion(value)}
-              items={[
-                { label: 'America y Oceania', value: 'us' },
-                { label: 'Europa', value: 'eu' },
-                { label: 'Taiwan', value: 'tw' },
-                { label: 'Corea', value: 'kr' },
-                { label: 'China', value: 'cn' },
-              ]}
-              style={pickerSelectStyles}
-              value={region}
-            />
-          ) : (
-            <Text>Cargando ubicación...</Text>
-          )}
-        </View>
-
-        <Text style={styles.textLabel}>Ingresa un Reino</Text>
-        <TextInput
-          placeholder="Reino"
-          value={realm}
-          onChangeText={text => setRealm(text)}
-          style={styles.input}
+      <View style={styles.inputContainer}>
+        <Text style={styles.pickerLabel}>Selecciona una Región</Text>
+        <LocationComponent onLocationChange={handleLocationChange} />
+        <RNPickerSelect
+          placeholder={{ label: 'Selecciona una Región', value: null }}
+          onValueChange={(value) => setRegion(value)}
+          items={[
+            { label: 'America y Oceania', value: 'us' },
+            { label: 'Europa', value: 'eu' },
+            { label: 'Taiwan', value: 'tw' },
+            { label: 'Corea', value: 'kr' },
+            { label: 'China', value: 'cn' },
+          ]}
+          style={pickerSelectStyles}
+          value={region}
         />
+      </View>
 
-        <Text style={styles.textLabel}>Ingresa un Personaje</Text>
-        <TextInput
-          placeholder="Nombre del personaje"
-          value={characterName}
-          onChangeText={text => setCharacterName(text)}
-          style={styles.input}
-        />
+      <Text style={styles.textLabel}>Ingresa un Reino</Text>
+      <TextInput
+        placeholder="Reino"
+        value={realm}
+        onChangeText={text => setRealm(text)}
+        style={styles.input}
+      />
+
+      <Text style={styles.textLabel}>Ingresa un Personaje</Text>
+      <TextInput
+        placeholder="Nombre del personaje"
+        value={characterName}
+        onChangeText={text => setCharacterName(text)}
+        style={styles.input}
+      />
 
       <TouchableOpacity
         style={styles.button}

@@ -131,21 +131,20 @@ const RaidRankings = () => {
     };
 
     const renderItem = ({ item }) => {
-        // Verificar si la guild tiene un logo definido
         const logoSource = item.logo ? { uri: item.logo } : { uri: 'https://seeklogo.com/images/W/world-of-warcraft-logo-F6AAB54AD8-seeklogo.com.png' };
-      
+
         return (
-          <TouchableOpacity style={styles.guildContainer} onPress={() => handleGuildPress(item)}>
-            <Image style={styles.logo} source={logoSource} />
-            <View style={styles.guildInfo}>
-              <Text style={styles.guildName}>{item.name}</Text>
-              <Text style={styles.guildInfo}>{`Facción: ${item.faction}`}</Text>
-              <Text style={styles.guildInfo}>{`Region: ${item.region.short_name}`}</Text>
-              <Text style={styles.guildInfo}>{`Servidor: ${item.realm.name}`}</Text>
-            </View>
-          </TouchableOpacity>
+            <TouchableOpacity style={styles.guildContainer} onPress={() => handleGuildPress(item)}>
+                <Image style={styles.logo} source={logoSource} />
+                <View style={styles.guildInfo}>
+                    <Text style={styles.guildName}>{item.name}</Text>
+                    <Text style={styles.guildInfo}>{`Facción: ${item.faction}`}</Text>
+                    <Text style={styles.guildInfo}>{`Region: ${item.region.short_name}`}</Text>
+                    <Text style={styles.guildInfo}>{`Servidor: ${item.realm.name}`}</Text>
+                </View>
+            </TouchableOpacity>
         );
-      };
+    };
 
     return (
         <View style={styles.container}>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, Image } from 'react-native';
+import { View, Text, ScrollView, Image, TouchableOpacity, Linking } from 'react-native';
 import axios from 'axios';
 import { styles, alerta } from '../../styles/Detalles';
 
@@ -48,6 +48,13 @@ const CharacterDetailsScreen = ({ route }) => {
     ? { uri: 'https://getwallpapers.com/wallpaper/full/0/6/3/261410.jpg' }
     : { uri: 'https://external-preview.redd.it/xPq0WfS5oWRLkw5tjNlk2M-i3-DU_VF85uuaBvLWeU8.jpg?auto=webp&s=d8e88e13ba9517b054b1ffb94bfdf18b7b550c79' };
 
+  const navigateToProfile = () => {
+    // Verifica si la URL del perfil está disponible
+    if (characterData.profile_url) {
+      // Abre la URL del perfil del personaje en el navegador predeterminado del dispositivo
+      Linking.openURL(characterData.profile_url);
+    }
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -68,40 +75,46 @@ const CharacterDetailsScreen = ({ route }) => {
                 <Text style={styles.playerDetails}>{characterData.faction}</Text>
               </View>
             </View>
+
+            <TouchableOpacity style={styles.profileButton} onPress={() => navigateToProfile()}>
+              <Image source={{ uri: 'https://yt3.googleusercontent.com/ytc/AIdro_lkBlXGH-KKNxkcI8CzUmOKGf9Tty-1z4uvUmlE=s900-c-k-c0x00ffffff-no-rj' }} style={styles.profileIcon} />
+            </TouchableOpacity>
           </View>
 
           <Text style={styles.sectionHeader}>Mythic+ Scores</Text>
           <Text style={styles.scoreLabel}>Dragonflight Season 3</Text>
-          <View style={styles.scoreContainer}>
+          <View>
             {characterData.mythic_plus_scores_by_season.map((seasonData, index) => (
               <View key={index}>
-                <Text style={styles.score}>Overall: {seasonData.scores.all}</Text>
-                <View style={styles.scoreRow}>
-                  <View>
-                    <Image
-                      style={{ width: 45, height: 45 }}
-                      source={{ uri: "https://gordian-knot.eu/wp-content/uploads/2020/11/DPS-role.png" }}
-                    />
-                    <Text style={styles.score}>DPS</Text>
-                    <Text style={styles.score}>{seasonData.scores.dps}</Text>
-                  </View>
+                <Text style={styles.scoreOverall}>{seasonData.scores.all}</Text>
+                <View style={styles.scoreContainer}>
+                  <View style={styles.scoreRow}>
+                    <View style={styles.scoreItem}>
+                      <Image
+                        style={styles.scoreImage}
+                        source={{ uri: "https://i.pinimg.com/originals/2e/74/c9/2e74c929df9fdac114fab40b38bf2d33.png" }}
+                      />
+                      <Text style={styles.score}>Daño</Text>
+                      <Text style={styles.score}>{seasonData.scores.dps}</Text>
+                    </View>
 
-                  <View>
-                    <Image
-                      style={{ width: 45, height: 45 }}
-                      source={{ uri: "https://gordian-knot.eu/wp-content/uploads/2020/11/Healer-role.png" }}
-                    />
-                    <Text style={styles.score}>Healer</Text>
-                    <Text style={styles.score}>{seasonData.scores.healer}</Text>
-                  </View>
+                    <View style={styles.scoreItem}>
+                      <Image
+                        style={styles.scoreImage}
+                        source={{ uri: "https://vanillawowtanking.files.wordpress.com/2015/02/2656p_0c_2b.jpg?w=640" }}
+                      />
+                      <Text style={styles.score}>Sanador</Text>
+                      <Text style={styles.score}>{seasonData.scores.healer}</Text>
+                    </View>
 
-                  <View>
-                    <Image
-                      style={{ width: 45, height: 45 }}
-                      source={{ uri: "https://gordian-knot.eu/wp-content/uploads/2020/11/Tank-role.png" }}
-                    />
-                    <Text style={styles.score}>Tank</Text>
-                    <Text style={styles.score}>{seasonData.scores.tank}</Text>
+                    <View style={styles.scoreItem}>
+                      <Image
+                        style={styles.scoreImage}
+                        source={{ uri: "https://addonswotlk.com/wp-content/uploads/2023/05/637075127215076342.jpeg.webp" }}
+                      />
+                      <Text style={styles.score}>Tanque</Text>
+                      <Text style={styles.score}>{seasonData.scores.tank}</Text>
+                    </View>
                   </View>
                 </View>
               </View>
@@ -126,8 +139,11 @@ const CharacterDetailsScreen = ({ route }) => {
             {characterData.raid_progression && Object.keys(characterData.raid_progression).map((raid, index) => (
               <View key={index} style={styles.raidContainer}>
                 <Text style={styles.raidTitle}>{formatRaidTitle(raid)}</Text>
+                <Text style={styles.raidTotal}>{characterData.raid_progression[raid].summary}</Text>
                 <View style={styles.raidProgression}>
-                <Text style={styles.raidSummary}>{characterData.raid_progression[raid].summary}</Text>
+                  <Text style={styles.raidSummary}>Normal: {characterData.raid_progression[raid].normal_bosses_killed}</Text>
+                  <Text style={styles.raidSummary}>Heroico: {characterData.raid_progression[raid].heroic_bosses_killed}</Text>
+                  <Text style={styles.raidSummary}>Mitico: {characterData.raid_progression[raid].mythic_bosses_killed}</Text>
                 </View>
               </View>
             ))}
