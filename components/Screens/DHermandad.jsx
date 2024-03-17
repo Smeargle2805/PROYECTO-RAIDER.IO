@@ -80,22 +80,6 @@ const GuildDetailsScreen = ({ route }) => {
         }
     }
 
-    const renderItem = ({ item }) => {
-
-        return (
-            <TouchableOpacity style={styles.guildContainer} onPress={() => handleCharacterPress(item)}>
-                <Image style={styles.logo} source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987424.png' }} />
-                <View style={styles.members}>
-                    <Text style={styles.memberName}>{item.character.name}</Text>
-                    <Text style={styles.raidBossesKilled}>{item.character.class} - {item.character.active_spec_name}</Text>
-                    <Text style={styles.raidBossesKilled}>Rango: {obtenerTituloPorRango(item.rank)}</Text>
-                    <Text style={styles.raidBossesKilled}>Region: {item.character.region}</Text>
-                    <Text style={styles.raidBossesKilled}>Reino: {item.character.realm}</Text>
-                </View>
-            </TouchableOpacity>
-        );
-    };
-
     return (
         <ScrollView style={styles.container}>
             {guildData && (

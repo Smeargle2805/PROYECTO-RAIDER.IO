@@ -49,9 +49,7 @@ const CharacterDetailsScreen = ({ route }) => {
     : { uri: 'https://external-preview.redd.it/xPq0WfS5oWRLkw5tjNlk2M-i3-DU_VF85uuaBvLWeU8.jpg?auto=webp&s=d8e88e13ba9517b054b1ffb94bfdf18b7b550c79' };
 
   const navigateToProfile = () => {
-    // Verifica si la URL del perfil está disponible
     if (characterData.profile_url) {
-      // Abre la URL del perfil del personaje en el navegador predeterminado del dispositivo
       Linking.openURL(characterData.profile_url);
     }
   };
